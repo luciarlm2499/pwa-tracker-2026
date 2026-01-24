@@ -1,0 +1,132 @@
+<!--MAIN-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Ensures the page scales correctly on mobile devices -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PWA Tracker 2026</title>
+  
+  <!-- Link to manifest for PWA functionality -->
+  <link rel="manifest" href="manifest.json">
+
+  <style>
+    /* General page styling */
+    body {
+      font-family: 'Poppins', Arial, sans-serif; /* clean modern font */
+      background-color: #1F1E1E; /* dark background */
+      color: #FFFFFF;            /* white text */
+      margin: 0;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    /* Main title styling */
+    h1 {
+      color: #FFFFFF; /* blue accent color */
+      margin-bottom: 10px;
+      font-size: 36px;
+    }
+
+    /* Subtitle styling */
+    p {
+      color: #BBBBBB; /* softer gray text */
+      margin-top: 0;
+      margin-bottom: 40px;
+      font-size: 18px;
+    }
+
+    /* Container for the navigation cards */
+    .card-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;       /* space between cards */
+      flex-wrap: wrap; /* allows stacking on small screens */
+    }
+
+    /* Individual card styling */
+    .card {
+      background: #2A2A2A; /* slightly lighter than body background */
+      border-radius: 12px; /* rounded corners */
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4); /* subtle shadow */
+      width: 220px;
+      padding: 25px;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s; /* smooth hover effect */
+    }
+
+    /* Card hover effect */
+    .card:hover {
+      transform: translateY(-5px); /* lift card slightly */
+      box-shadow: 0 6px 16px rgba(0,0,0,0.6); /* deeper shadow */
+    }
+
+    /* Card title styling */
+    .card h2 {
+      margin-bottom: 20px;
+      color: #56C1E3; /* accent color */
+      font-size: 22px;
+    }
+
+    /* Button styling inside cards */
+    .card button {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      background-color: #56C1E3; /* main accent */
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    /* Button hover effect */
+    .card button:hover {
+      background-color: #3D8DA6; /* darker blue on hover */
+      transform: scale(1.05);   /* subtle zoom */
+    }
+
+    /* Responsive adjustments for mobile screens */
+    @media (max-width: 480px) {
+      .card {
+        width: 100%; /* stack cards full width on mobile */
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Page header -->
+  <h1>2026 Tracker</h1>
+  <p>Personal finance & activity dashboard</p>
+
+  <!-- Navigation cards -->
+  <div class="card-container">
+    <!-- Activities card -->
+    <div class="card">
+      <h2>Activities</h2>
+      <button onclick="location.href='activities.html'">Open</button>
+    </div>
+
+    <!-- Costs card -->
+    <div class="card">
+      <h2>Costs</h2>
+      <button onclick="location.href='costs.html'">Open</button>
+    </div>
+  </div>
+
+  <!-- Service worker registration for offline functionality -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+      .then(function(registration) {
+        console.log('Service Worker registered with scope:', registration.scope);
+      })
+      .catch(function(error) {
+        console.log('Service Worker registration failed:', error);
+      });
+    }
+  </script>
+</body>
+</html>
