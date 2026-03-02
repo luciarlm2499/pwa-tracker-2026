@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Incomes</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="incomes.js" defer></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <!-- Header row: Title left, Extra button right -->
+  <header class="header-row">
+    <h1>INCOMES</h1>
+    <button class="extra-btn" onclick="toggleExtra()">Extra</button>
+  </header>
+
+  <!-- Extra Income collapsible -->
+  <div id="extra" class="extra-box hidden">
+    <label>Description</label>
+    <input type="text" id="extra-desc">
+    <label>Amount</label>
+    <input type="number" id="extra-amount" onchange="saveExtra()">
+  </div>
+
+  <!-- Months grid: 2 columns, 6 rows -->
+  <section class="months-grid">
+    <!-- Row 1 -->
+    <div>
+      <button onclick="toggleMonth('january')">January</button>
+      <div id="january" class="month-box hidden">
+        <label>First Payment</label>
+        <input type="number" id="jan-first" onchange="saveIncome('jan')">
+        <label>Second Payment</label>
+        <input type="number" id="jan-second" onchange="saveIncome('jan')">
+      </div>
+    </div>
+
+    <div>
+      <button onclick="toggleMonth('february')">February</button>
+      <div id="february" class="month-box hidden">
+        <label>First Payment</label>
+        <input type="number" id="feb-first" onchange="saveIncome('feb')">
+        <label>Second Payment</label>
+        <input type="number" id="feb-second" onchange="saveIncome('feb')">
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div>
+      <button onclick="toggleMonth('march')">March</button>
+      <div id="march" class="month-box hidden">
+        <label>First Payment</label>
+        <input type="number" id="mar-first" onchange="saveIncome('mar')">
+        <label>Second Payment</label>
+        <input type="number" id="mar-second" onchange="saveIncome('mar')">
+      </div>
+    </div>
+
+    <div>
+      <button onclick="toggleMonth('april')">April</button>
+      <div id="april" class="month-box hidden">
+        <label>First Payment</label>
+        <input type="number" id="apr-first" onchange="saveIncome('apr')">
+        <label>Second Payment</label>
+        <input type="number" id="apr-second" onchange="saveIncome('apr')">
+      </div>
+    </div>
+
+    <!-- Row 3 -->
+    <div>
+      <button onclick="toggleMonth('may')">May</button>
+      <div id="may" class="month-box hidden">
+        <label>First Payment</label>
+        <input type="number" id="may-first" onchange="saveIncome('may')">
+        <label>Second Payment</label>
+        <input type="number" id="may-second" onchange="saveIncome('may')">
+      </div>
+    </div>
+
+    <div>
+      <button onclick="toggleMonth('june')">June</button>
+      <div id="june" class="month-box hidden">
+        <label>First Payment</label>
+        <input type="number" id="jun-first" onchange="saveIncome('jun')">
+        <label>Second Payment</label>
+        <input type="number" id="jun-second" onchange="saveIncome('jun')">
+      </div>
+    </div>
+
+    <!-- Row 4 -->
+    <div>
+      <button onclick="toggleMonth('july')">July</button>
+      <div id="july" class="month-box hidden">
+        <label>First Payment</label>
+        <input type="number" id="jul-first" onchange="saveIncome('jul')">
+        <label>Second Payment</label>
+        <input type="number" id="jul-second" onchange="saveIncome('jul')">
+      </div>
+    </div>
+
+    <div>
+      <button onclick="toggleMonth('august')">August</button>
+      <div id="august" class="month-box hidden">
+        <label>First Payment</label>
+        <input type="number" id="aug-first" onchange="saveIncome('aug')">
+        <label>Second Payment</label>
+        <input type="number" id="aug-second" onchange="saveIncome('aug')">
+      </div>
+    </div>
+
+    <!-- Row 5 -->
+    <div>
+      <button onclick="toggleMonth('september')">September</button>
+      <div id="september" class="month-box hidden">
+        <label>First Payment</label>
+        <input type="number" id="sep-first" onchange="saveIncome('sep')">
+        <label>Second Payment</label>
+        <input type="number" id="sep-second" onchange="saveIncome('sep')">
+      </div>
+    </div>
+
+    <div>
+      <button onclick="toggleMonth('october')">October</button>
+      <div id="october" class="month-box hidden">
+        <label>First Payment</label>
+        <input type="number" id="oct-first" onchange="saveIncome('oct')">
+        <label>Second Payment</label>
+        <input type="number" id="oct-second" onchange="saveIncome('oct')">
+      </div>
+    </div>
+
+    <!-- Row 6 -->
+    <div>
+      <button onclick="toggleMonth('november')">November</button>
+      <div id="november" class="month-box hidden">
+        <label>First Payment</label>
+        <input type="number" id="nov-first" onchange="saveIncome('nov')">
+        <label>Second Payment</label>
+        <input type="number" id="nov-second" onchange="saveIncome('nov')">
+      </div>
+    </div>
+
+    <div>
+      <button onclick="toggleMonth('december')">December</button>
+      <div id="december" class="month-box hidden">
+        <label>First Payment</label>
+        <input type="number" id="dec-first" onchange="saveIncome('dec')">
+        <label>Second Payment</label>
+        <input type="number" id="dec-second" onchange="saveIncome('dec')">
+      </div>
+    </div>
+  </section>
+
+  <!-- Total -->
+  <footer>
+    <p>Total Income for 2026: <br><strong><span id="total">0</span></strong></p>
+  </footer>
+</body>
+</html>
