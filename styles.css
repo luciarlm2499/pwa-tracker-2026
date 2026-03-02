@@ -1,0 +1,126 @@
+/* Base styles (default for laptop/desktop) */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #121212;
+  color: #f0f0f0;
+  margin: 0;
+  padding: 30px;
+  padding-top: 80px; /* pushes everything down */
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  color: #EBFDFF;
+  margin: 0;
+}
+
+.extra-btn {
+  background-color: #1e1e1e;
+  border: 2px solid #56C1E3;
+  color: #56C1E3;
+  padding: 14px 20px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.extra-btn:hover {
+  background-color: #56C1E3;
+  color: #121212;
+}
+
+.months-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 columns */
+  gap: 20px;
+}
+
+.months-grid button {
+  width: 100%;
+  background-color: #1e1e1e;
+  border: 2px solid #56C1E3;
+  color: #56C1E3;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.months-grid button:hover {
+  background-color: #56C1E3;
+  color: #121212;
+}
+
+.month-box,
+.extra-box {
+  margin-top: 12px;
+  padding: 16px;
+  border: 1px solid #333;
+  border-radius: 12px;
+  background-color: #1a1a1a;
+}
+
+.month-box label,
+.extra-box label {
+  display: block;
+  margin-top: 12px;
+  font-weight: 600;
+  color: #ccc;
+  font-size: 1.1rem;
+}
+
+.month-box input,
+.extra-box input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background-color: #2a2a2a;
+  color: #f0f0f0;
+  font-size: 1.1rem;
+}
+
+.hidden {
+  display: none;
+}
+
+footer {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 1.4rem;
+  font-weight: normal;
+  color: #FFFFFF;
+}
+
+/* 📱 Mobile styles (smaller buttons, keep 2×6 grid) */
+@media (max-width: 768px) {
+  .months-grid {
+    grid-template-columns: 1fr 1fr; /* still 2 columns */
+    gap: 15px; /* tighter spacing */
+  }
+
+  .months-grid button {
+    padding: 10px;       /* smaller padding */
+    font-size: 1rem;     /* smaller text */
+    border-width: 2px;
+    border-radius: 8px;
+  }
+
+  .extra-btn {
+    padding: 10px 14px;  /* smaller extra button */
+    font-size: 1rem;
+    border-width: 2px;
+    border-radius: 8px;
+  }
+}
