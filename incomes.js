@@ -6,28 +6,86 @@ function formatCurrency(value) {
   });
 }
 
-// Save income for a given month
-function saveIncome(monthPrefix) {
-  const first = document.getElementById(`${monthPrefix}-first`).value;
-  const second = document.getElementById(`${monthPrefix}-second`).value;
+let currentCategory = "Salary"; // Default category
 
-  localStorage.setItem(`${monthPrefix}-first`, first);
-  localStorage.setItem(`${monthPrefix}-second`, second);
-
-  updateTotal();
+// Toggle between Salary and Extra
+function toggleExtra() {
+  if (currentCategory === "Salary") {
+    currentCategory = "Extra";
+    alert("Extra mode ON — inputs will be saved as Extra Income.");
+  } else {
+    currentCategory = "Salary";
+    alert("Extra mode OFF — back to Salary as default.");
+  }
 }
 
-// Save extra income
-function saveExtra() {
-  const desc = document.getElementById("extra-desc").value;
-  const amount = document.getElementById("extra-amount").value;
+// Save income (works for both Salary and Extra)
+function saveIncome() {
+  const description = document.getElementById('incomeDescription').value || currentCategory;
+  const amount = document.getElementById('incomeAmount').value;
 
-  localStorage.setItem("extra-desc", desc);
-  localStorage.setItem("extra-amount", amount);
+  if (amount) {
+    const today = new Date();
+    const income = { category: currentCategory, description, amount, date: today.toISOString() };
 
-  updateTotal();
+    const savedIncomes = JSON.parse(localStorage.getItem('incomes')) || [];
+    savedIncomes.push(income);
+    localStorage.setItem('incomes', JSON.stringify(savedIncomes));
+
+    renderIncomeList(savedIncomes);
+
+    // Reset inputs
+    document.getElementById('incomeDescription').value = '';
+    document.getElementById('incomeAmount').value = '';
+
+    // Reset category back to Salary after saving
+    currentCategory = "Salary";
+  } else {
+    alert("Please enter the amount.");
+  }
 }
 
+// Reset all incomes
+function resetIncomes() {
+  if (confirm("Are you sure you want to clear all saved incomes?")) {
+    localStorage.removeItem('incomes');
+    document.getElementById('incomeList').innerHTML = "";
+    alert("All incomes have been reset.");
+  }
+}
+
+// Render preview list
+function renderIncomeList(incomes) {
+  const list = document.getElementById('incomeList');
+  list.innerHTML = "";
+
+  incomes.forEach(income => {
+    const item = document.createElement('div');
+    item.className = 'income-item';
+    const date = new Date(income.date);
+    const monthYear = date.toLocaleString('default', { month: 'long', year: 'numeric' });
+
+    // Format amount with commas and .00
+    const formattedAmount = Number(income.amount).toLocaleString('en-US', { 
+      minimumFractionDigits: 2, 
+      maximumFractionDigits: 2 
+    });
+
+    item.innerHTML = `
+      <div class="income-month"><strong>${monthYear}</strong></div>
+      <div>${income.category}: ${income.description} - $${formattedAmount}</div>
+    `;
+    list.appendChild(item);
+  });
+}
+
+// Load preview list on page load
+document.addEventListener("DOMContentLoaded", () => {
+  const savedIncomes = JSON.parse(localStorage.getItem('incomes')) || [];
+  renderIncomeList(savedIncomes);
+});
+
+/*
 // Load saved values when page starts
 function loadSavedData() {
   const months = ["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"];
@@ -81,3 +139,4 @@ function toggleExtra() {
 
 // Run when page loads
 window.onload = loadSavedData;
+*/
