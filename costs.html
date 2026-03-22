@@ -7,109 +7,20 @@
   <title>Costs Tracker</title>
   <!-- Load Chart.js from CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-    /* General page styling */
-    body {
-      font-family: 'Poppins', Arial, sans-serif;
-      background-color: #1F1E1E; /* dark background */
-      color: #FFFFFF;            /* white text */
-      margin: 0;
-      padding: 40px 20px;
-      text-align: left;
-    }
-
-    /* Greeting */
-    .greeting {
-        font-size: 20px;
-        color: #BBBBBB;
-        margin: 0;
-    }
-    .name {
-        font-size: 32px;
-        color: #FFFFFF;
-        margin: 5px 0 30px;
-    }
-
-    /* Amount Display */
-    .amount-display {
-        font-size: 36px;
-        color: #FFFFFF;
-        margin-bottom: 30px;
-    }
-    .amount-display strong {
-        font-size: 40px;
-        display: block;
-    }
-    .amount-display .label {
-        font-size: 16px;
-        color: #BBBBBB;
-        margin-top: 5px;
-    }
-    /* Chart styling */
-    h2 {
-      margin-top: 30px;
-      color: #56C1E3;
-      font-size: 20px;
-      text-align: center;
-    }
-    canvas {
-      width: 90% !important;
-      max-width: 600px;
-      height: 250px !important;
-      margin: 20px auto;
-      display: block;
-    }
-
-    /* Buttons styling */
-    .button-container {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 30px;
-      flex-wrap: wrap;
-    }
-    button {
-      width: 150px;
-      height: 50px;
-      font-size: 18px;
-      border-radius: 8px;
-      border: none;
-      background-color: #56C1E3;
-      color: white;
-      cursor: pointer;
-      transition: background-color 0.3s, transform 0.2s;
-    }
-    button:hover {
-      background-color: #3D8DA6;
-      transform: scale(1.05);
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 480px) {
-      .amount {
-        font-size: 22px;
-      }
-      canvas {
-        height: 180px !important;
-      }
-      button {
-        width: 100%;
-        font-size: 16px;
-      }
-    }
-  </style>
+  <!-- Link external stylesheet -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<!-- Greeting and Amount Section -->
-<div class="header">
-  <p class="greeting">Hello,</p>
-  <h1 class="name">Lucia</h1>
+  <!-- Greeting and Amount Section -->
+  <div class="header">
+    <p class="greeting">Hello,</p>
+    <h1 class="name">Lucia</h1>
 
-  <div class="amount-display">
-    <strong>$500.00</strong>
-    <p class="label">Available Amount</p>
+    <div class="amount-display">
+      <strong>$500.00</strong>
+      <p class="label">Available Amount</p>
+    </div>
   </div>
-</div>
 
   <!-- Line Graph -->
   <h2>Monthly Balance</h2>
@@ -117,8 +28,17 @@
 
   <!-- Buttons -->
   <div class="button-container">
-    <button onclick="location.href='spendings.html'">Spendings</button>
-    <button onclick="location.href='incomes.html'">Incomes</button>
+    <!-- INPUT BUTTON -->
+    <div class="input-group">
+      <button onclick="toggleInputMenu()">Input</button>
+      <div id="inputMenu" class="sub-buttons">
+        <button onclick="location.href='spendings.html'">Spendings</button>
+        <button onclick="location.href='incomes.html'">Incomes</button>
+      </div>
+    </div>
+    
+    <!-- SUMMARY BUTTON -->
+    <button onclick="location.href='budgetSummary.html'">Budget Summary</button>
   </div>
 
   <!-- Chart Script -->
@@ -143,15 +63,21 @@
         scales: { y: { beginAtZero: true } }
       }
     });
+
+    // Toggle INPUT sub-buttons
+    function toggleInputMenu() {
+      const menu = document.getElementById('inputMenu');
+      menu.style.display = (menu.style.display === 'flex') ? 'none' : 'flex';
+    }
   </script>
 
-   <!-- Service worker registration for offline functionality -->
+  <!-- Service worker registration -->
   <script>
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("service-worker.js")
-      .then(reg => console.log("Service Worker registered:", reg.scope))
-      .catch(err => console.log("Service Worker failed:", err));
-  }
-</script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js")
+        .then(reg => console.log("Service Worker registered:", reg.scope))
+        .catch(err => console.log("Service Worker failed:", err));
+    }
+  </script>
 </body>
 </html>
