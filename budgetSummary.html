@@ -1,0 +1,40 @@
+<!-- budgetSummary.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Budget Summary</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="budgetSummary.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- for pie chart -->
+</head>
+<body>
+
+<h1 class="summary-header">Budget Summary</h1>
+
+<!--Scrollable Months-->
+<div class="month-selector">
+  <!-- Month buttons will be fixed here -->
+</div>
+
+<!--Display Total Balance-->
+<div id="balance-display" class="balance-card">
+  <h2 class="balance-header">Total Balance</h2>
+  <p id="balance-amount">$0.00</p>
+</div>
+
+<!--Income and Expense Display-->
+<div class="summary-boxes">
+  <div class="summary-box" id="income-box">
+    <ul id="income-list-summary"></ul>
+  </div>
+  <div class="summary-box" id="expense-box">
+    <ul id="expense-list-summary"></ul>
+  </div>
+</div>
+
+<!--Pie Chart-->
+<canvas id="expensesChart"></canvas>
+
+</body>
+</html>

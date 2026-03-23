@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spendings Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Attach external JS -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+  <script src="spendings.js" defer></script>
+
+</head>
+<body>
+  <header>
+    <h1>Spendings</h1>
+  </header>
+
+  <main>
+    <h2>Log a New Expense</h2>
+
+    <!-- Category Selection Grid -->
+    <div class="category-grid">
+      <button onclick="selectCategory('Utilities')"><i class="fas fa-bolt"></i> Utilities</button>
+      <button onclick="selectCategory('Self-Care')"><i class="fas fa-spa"></i> Self-Care</button>
+      <button onclick="selectCategory('Food')"><i class="fas fa-utensils"></i> Food</button>
+      <button onclick="selectCategory('Activities')"><i class="fas fa-gamepad"></i> Activities</button>
+      <button onclick="selectCategory('Extra')"><i class="fas fa-plus-circle"></i> Extra</button>
+      <button onclick="selectCategory('Rent')"><i class="fas fa-home"></i> Rent</button>
+    </div>
+
+    <!-- Form Card -->
+    <div class="form-card">
+      <label for="category">Category</label>
+      <input type="text" id="category" readonly placeholder="Select a category above">
+
+      <label for="description">Description</label>
+      <input type="text" id="description" placeholder="e.g., Haircut">
+
+      <label for="amount">Amount</label>
+      <input type="number" id="amount" placeholder="e.g., 500">
+
+      <button class="primary" onclick="saveExpense()">Save Expense</button>
+    </div>
+
+    <button class="danger-btn" onclick="resetExpenses()">Reset All Expenses</button>
+
+    <!-- Expense List Preview -->
+    <div id="expenseList" class="expense-list"></div>
+  </main>
+
+  <!-- Popup Modal -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <p id="popupMessage">Expense saved!</p>
+      <button onclick="closePopup()">OK</button>
+    </div>
+  </div>
+</body>
+</html>
